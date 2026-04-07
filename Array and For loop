@@ -1,0 +1,19 @@
+//array pop and push
+
+let number = [];
+for(let i = 1;i<=5;i++){
+    number.push(i);
+}
+console.log(number);
+number.pop();
+console.log(number);
+
+// shift array
+let num = [1,2,3,4,5];
+num.shift();
+console.log(num);
+
+//unshift array
+let num = [1,2,3,4,5];
+num.unshift();
+console.log(num);
