@@ -1,0 +1,23 @@
+let person = {
+    name: "Gokul",
+    age: 20,
+    
+    sayHello: function() {
+        console.log("Hello, my name is " + this.name);
+    }
+};
+
+// Access properties
+console.log(person.name); // Gokul
+console.log(person.age);  // 20
+
+// Modify properties
+person.age = 21;
+person.name = "Vijay";
+
+console.log(person.name); // Vijay
+console.log(person.age);  // 21
+
+
+person.sayHello(); 
+// Output: Hello, my name is Vijay
