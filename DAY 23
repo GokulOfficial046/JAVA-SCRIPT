@@ -1,0 +1,49 @@
+
+// Change text using getElementById
+
+<p id="myText">Hello</p>
+
+<script>
+document.getElementById("myText").innerText = "Hello World!";
+</script>
+
+//Select an element and change its style
+
+<p id="demo">Style me</p>
+
+<script>
+let element = document.getElementById("demo");
+element.style.color = "blue";
+</script>
+
+// Change content of a paragraph
+
+<p id="para">Old Content</p>
+
+<script>
+document.getElementById("para").innerHTML = "New Content!";
+</script>
+
+//Change color and font size of text
+
+
+<p id="text">Change my style</p>
+
+<script>
+let txt = document.getElementById("text");
+txt.style.color = "red";
+txt.style.fontSize = "24px";
+</script>
+
+<p id="msg">Click button</p>
+<button onclick="changeText()">Click Me</button>
+
+<script>
+function changeText() {
+    let el = document.getElementById("msg");
+    el.innerText = "Text Changed!";
+    el.style.color = "green";
+    el.style.fontSize = "20px";
+}
+</script>
+
