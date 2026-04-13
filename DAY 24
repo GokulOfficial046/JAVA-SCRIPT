@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Events Example</title>
+</head>
+<body>
+
+<input type="text" id="inputBox" placeholder="Type here...">
+<p id="display"></p>
+
+<button id="clickBtn">Click Me</button>
+
+<script>
+// Show input value while typing
+document.getElementById("inputBox").addEventListener("input", function() {
+    document.getElementById("display").textContent = this.value;
+});
+
+// Button click event
+document.getElementById("clickBtn").addEventListener("click", function() {
+    alert("You typed: " + document.getElementById("inputBox").value);
+});
+</script>
+
+</body>
+</html>
