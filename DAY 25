@@ -1,0 +1,24 @@
+// Using const and let
+const appName = "User Info App";  // constant value
+let userName = "Gokul";           // can change
+let userAge = 21;
+
+// Function with default parameters
+function getUserInfo(name = "Guest", age = 18) {
+    // Template literal
+    return `Welcome to ${appName}!\nName: ${name}\nAge: ${age}`;
+}
+
+// Output
+console.log(getUserInfo(userName, userAge)); // custom values
+
+// Changing let variable
+userName = "Rahul";
+userAge = 25;
+
+console.log("\nAfter updating values:\n");
+console.log(getUserInfo(userName, userAge)); // updated values
+
+// Using default values
+console.log("\nUsing default values:\n");
+console.log(getUserInfo());
