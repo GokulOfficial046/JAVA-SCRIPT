@@ -1,0 +1,35 @@
+ // Original object
+const student = {
+  name: "Gokul",
+  age: 22,
+  marks: [80, 90, 85]
+};
+
+// 🔹 Object Destructuring
+const { name, age, marks } = student;
+
+// 🔹 Array Destructuring
+const [m1, m2, m3] = marks;
+
+// 🔹 Spread Operator (copy array)
+const copiedMarks = [...marks];
+
+// 🔹 Rest Operator (function)
+function calculateTotal(...nums) {
+  let total = 0;
+  for (let num of nums) {
+    total += num;
+  }
+  return total;
+}
+
+// Output
+console.log("Name:", name);
+console.log("Age:", age);
+console.log("Marks:", marks);
+
+console.log("Destructured Marks:", m1, m2, m3);
+
+console.log("Copied Marks:", copiedMarks);
+
+console.log("Total Marks:", calculateTotal(...marks));
