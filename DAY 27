@@ -1,0 +1,134 @@
+    
+    .0<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFlix</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f0e0d;
+            color: white;
+        }
+
+        /* Navbar */
+        header {
+            background-color: #d31212;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: rgb(130, 250, 61);
+        }
+
+        /* Section Title */
+        h2 {
+            margin: 20px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        /* Movie List */
+        #movieList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #2092df;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 180px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+            text-decoration-color: #000;
+        }
+
+        .card:hover {
+            transform: scale(1.08);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card p {
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #000;
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgb(156, 150, 150);
+        }
+    </style>
+</head>
+
+<body>
+
+<header> 🎬 MovieFlix </header>
+
+<h2>Popular Movies</h2>
+
+<div id="movieList"></div>
+
+<footer>
+    © 2026 MovieFlix | All Rights Reserved
+</footer>
+
+<script>
+    let movies = [
+        { name: "Avengers Endgame", img: "avengers.jpg" },
+        { name: "Venom", img: "venom.jpg" },
+        { name: "Spider Man", img: "spiderman.jpg" },
+        { name: "The Shawshank Redemption", img: "shawshank.jpg" }
+    ];
+
+    let container = document.getElementById("movieList");
+
+    for (let i = 0; i < movies.length; i++) {
+
+        let card = document.createElement("div");
+        card.className = "card";
+
+        let img = document.createElement("img");
+        img.src = "images/" + movies[i].img + ".jpg";
+        
+
+        let title = document.createElement("p");
+        title.textContent = movies[i].name;
+
+       
+        card.onclick = function () {
+            alert("🎬 You selected: " + movies[i].name);
+        };
+
+        card.appendChild(img);
+        card.appendChild(title);
+
+        container.appendChild(card);
+    }
+</script>
+
+</body>
+</html>
