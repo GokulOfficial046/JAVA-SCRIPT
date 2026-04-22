@@ -1,0 +1,45 @@
+// 🔹 Synchronous (runs line by line)
+console.log("Start");
+
+console.log("Middle");
+
+console.log("End");
+
+// Output:
+// Start
+// Middle
+// End
+
+// 🔹 Asynchronous (does not block execution)
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Inside Timeout");
+}, 2000);
+
+console.log("End");
+
+// Output:
+// Start
+// End
+// Inside Timeout (after 2 sec)
+
+//Print message after 2 seconds.
+
+setTimeout(() => {
+    console.log("Hello after 2 seconds");
+}, 2000);
+
+//Print counter every 1 second
+
+let count = 1;
+
+const interval = setInterval(() => {
+    console.log(count);
+    count++;
+
+    // Stop after 5 counts (optional)
+    if (count > 5) {
+        clearInterval(interval);
+    }
+}, 1000);
