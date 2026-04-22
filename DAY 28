@@ -1,0 +1,38 @@
+// ✅ Arrow Functions (Concise)
+
+// Add two numbers
+const add = (a, b) => a + b;
+
+// Multiply two numbers
+const multiply = (a, b) => a * b;
+
+// Check even number
+const isEven = num => num % 2 === 0;
+
+// Get square
+const square = n => n * n;
+
+
+// ✅ Class with Constructor and Method
+
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+    }
+}
+
+
+// ✅ Usage
+
+console.log(add(5, 3));        // 8
+console.log(multiply(4, 2));   // 8
+console.log(isEven(6));        // true
+console.log(square(5));        // 25
+
+const p1 = new Person("Gokul", 22);
+console.log(p1.greet());
