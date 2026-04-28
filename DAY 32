@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Thattrom Thukurom App 🔥</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: linear-gradient(to right, #f70707, #d8db19);
+    text-align: center;
+}
+
+/* 🔝 Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+}
+
+/* 🔥 Full Logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(to right, #ff512f, #dd2476);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-text .main {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.logo-text .sub {
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* 📦 Container */
+.container {
+    margin-top: 40px;
+}
+
+/* 🔤 Input */
+input {
+    padding: 10px;
+    width: 220px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* 🔘 Buttons */
+button {
+    padding: 10px;
+    border: none;
+    background: #333;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background: #555;
+}
+
+/* 📋 List */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin: 10px auto;
+    padding: 10px;
+    width: 270px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* ❌ Delete */
+.delete {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* ℹ️ Message */
+#sessionMsg {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* 💤 Empty state */
+.empty {
+    color: #222;
+    margin-top: 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🔝 Navbar -->
+<div class="navbar">
+    <div class="logo-container">
+        <div class="logo-icon">⚡</div>
+        <div class="logo-text">
+            <span class="main">Thattrom</span>
+            <span class="sub">Thukurom</span>
+        </div>
+    </div>
+</div>
+
+<!-- 📦 App -->
+<div class="container">
+    <h1>Task Manager 🚀</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="clearTasks()">Clear All</button>
+
+    <h3 id="sessionMsg"></h3>
+
+    <ul id="taskList"></ul>
+    <p id="emptyMsg" class="empty"></p>
+</div>
+
+<script>
+
+// 🔄 Load on start
+window.onload = function () {
+    displayTasks();
+
+    let msg = sessionStorage.getItem("message");
+    if (msg) {
+        document.getElementById("sessionMsg").innerText = msg;
+    }
+};
+
+// ⌨️ Enter key support
+document.getElementById("taskInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        addTask();
+    }
+});
+
+// 🔥 Promise
+function saveTaskAsync(task) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.push(task);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            resolve("✅ Task Saved!");
+        }, 800);
+    });
+}
+
+// 🚀 Async/Await
+async function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value.trim();
+
+    if (task === "") {
+        alert("Enter a task!");
+        return;
+    }
+
+    document.getElementById("sessionMsg").innerText = "Saving... ⏳";
+
+    let message = await saveTaskAsync(task);
+
+    setTimeout(() => {
+        document.getElementById("sessionMsg").innerText = message;
+    }, 300);
+
+    sessionStorage.setItem("message", "Last added: " + task);
+
+    input.value = "";
+    displayTasks();
+}
+
+// 📋 Display
+function displayTasks() {
+    let list = document.getElementById("taskList");
+    let emptyMsg = document.getElementById("emptyMsg");
+
+    list.innerHTML = "";
+
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    if (tasks.length === 0) {
+        emptyMsg.innerText = "No tasks yet 😴";
+        return;
+    } else {
+        emptyMsg.innerText = "";
+    }
+
+    tasks.forEach((task, index) => {
+        let li = document.createElement("li");
+
+        li.innerHTML = `
+            ${task}
+            <button class="delete" onclick="deleteTask(${index})">X</button>
+        `;
+
+        list.appendChild(li);
+    });
+}
+
+// ❌ Delete
+function deleteTask(index) {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    tasks.splice(index, 1);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    displayTasks();
+}
+
+// 🧹 Clear
+function clearTasks() {
+    localStorage.removeItem("tasks");
+    sessionStorage.removeItem("message");
+    displayTasks();
+    document.getElementById("sessionMsg").innerText = "";
+}
+
+</script>
+
+</body>
+</html>
